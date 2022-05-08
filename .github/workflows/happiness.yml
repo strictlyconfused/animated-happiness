@@ -1,0 +1,17 @@
+on: issue_comment
+
+jobs:
+  spray_happiness:
+    name: Spray happiness
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'User commented: ${{ github.event.comment.body }}'
+        env:
+          BIG_SECRET: ${{ secrets.BIG_SECRET }}
+      - name: Create happiness comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Wow, much happiness--all for you!
