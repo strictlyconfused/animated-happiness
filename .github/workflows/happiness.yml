@@ -8,7 +8,7 @@ jobs:
       - run: |
           echo 'User commented: ${{ github.event.comment.body }}'
       - run: |
-          export BIG_SECRET="${{ secrets.BIG_SECRET }}"
+          echo "BIG_SECRET=${{ secrets.BIG_SECRET }}" >> $GITHUB_ENV
       - name: Create happiness comment
         uses: peter-evans/create-or-update-comment@v2
         with:
